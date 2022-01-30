@@ -1,48 +1,30 @@
 # android
-Useful commands for Android development
+Useful functions for Android development
 
-## `android::devices`
-List attached devices
+https://github.com/sschmid/bee-android
 
-## `android::install`
-Install `ANDROID_APK` on the attached device
-
-## `android::start`
-Start `ANDROID_ACTIVITY` on the attached device
-
-## `android::logcat [<logcat-arguments>]`
-Print logs from `ANDROID_PACKAGE` of the attached device
-
-### Example
-```sh
-bee android::logcat -s "Unity"
 ```
+template:
 
-## `android::debug [<logcat-arguments>]`
-Convenience command that runs
-`android::install` `android::start` `android::logcat`
+  ANDROID_PACKAGE="com.company.myapp"
+  ANDROID_APK="Build/Android/${BEE_PROJECT}.apk"
+  ANDROID_ACTIVITY="${ANDROID_PACKAGE}/com.unity3d.player.UnityPlayerNativeActivity"
+  ANDROID_KEYSTORE="${BEE_RESOURCES}/android/keys.keystore"
+  ANDROID_KEYALIAS_NAME="${ANDROID_PACKAGE}"
 
-## `android::screenshot [<image-path>]`
-Capture a screenshot from the attached device and
-save it on your computer under `image-path` (default: `screenshot.png`)
+usage:
 
-### Example
-```sh
-bee android::screenshot
+  debug [<logcat-arguments>]    convenience command that runs install, start, logcat
+  devices                       list attached devices
+  fingerprint                   print certificate fingerprints for ANDROID_PACKAGE in ANDROID_KEYSTORE
+  install                       install ANDROID_APK on the attached device
+  keyhash                       print key hash for ANDROID_PACKAGE in ANDROID_KEYSTORE
+  logcat [<logcat-arguments>]   print logs from ANDROID_PACKAGE of the attached device
+  screenshot [<image-path>]     capture screenshot from the attached device
+  start                         start ANDROID_ACTIVITY on the attached device
+
+requirements:
+
+  adb       https://developer.android.com/studio/command-line/adb
+  keytool   https://www.oracle.com/java
 ```
-
-## `android::keyhash`
-Print key hash for `ANDROID_PACKAGE` in `ANDROID_KEYSTORE`.
-Password is not required
-
-## `android::fingerprint`
-Print certificate fingerprints for `ANDROID_PACKAGE` in `ANDROID_KEYSTORE`
-
-----------------------------------------
-
-## Dependencies
-
-### 3rd party
-- `adb` - https://developer.android.com/studio/command-line/adb
-  - make sure `adb` is in your path, e.g. in `~/.bash_profile` -> `export PATH="~/Library/Android/sdk/platform-tools/:$PATH"`
-- `keytool` - Java https://www.oracle.com/java

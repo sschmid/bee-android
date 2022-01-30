@@ -1,7 +1,5 @@
 android::help() {
   cat << 'EOF'
-Useful commands for Android development - https://github.com/sschmid/bee-android
-
 template:
 
   ANDROID_PACKAGE="com.company.myapp"
@@ -21,11 +19,7 @@ usage:
   screenshot [<image-path>]     capture screenshot from the attached device
   start                         start ANDROID_ACTIVITY on the attached device
 
-bee dependencies:
-
-  none
-
-dependencies:
+requirements:
 
   adb       https://developer.android.com/studio/command-line/adb
   keytool   https://www.oracle.com/java
